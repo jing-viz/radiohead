@@ -5,7 +5,7 @@ const k_skip_frame = 5;
 const k_frame_count = 2101;
 
 function load_frame(idx) {
-    if (idx > k_frame_count) return;
+    if (idx >= k_frame_count) return;
 
     const csv_filename = 'data/csv/' + idx + '.csv';
 
@@ -17,10 +17,10 @@ function load_frame(idx) {
             w: [],
         };
         for (let row of table.rows) {
-            new_frame.x.push(float(row.get(0)));
-            new_frame.y.push(float(row.get(1)));
-            new_frame.z.push(float(row.get(2)));
-            new_frame.w.push(float(row.get(3)));
+            new_frame.x.push(int(row.get(0)));
+            new_frame.y.push(int(row.get(1)));
+            new_frame.z.push(int(row.get(2)));
+            new_frame.w.push(int(row.get(3)));
         }
         frames.push(new_frame);
         print('loaded', csv_filename);
@@ -34,22 +34,28 @@ function setup() {
         song.loop();
     });
 
+    frameRate(30 / k_skip_frame);
     load_frame(1);
 }
 
 function draw_dot(x, y, z) {
-    const k = 1;
-    vertex(x, y, z);
-    vertex(x+k, y+k, z+k);
+    const k = 2;
+    vertex(x-k, y-k, z);
+    vertex(x+k, y+k, z);
+    // vertex(x+k, y-k, z);
+    // vertex(x-k, y+k, z);    
 }
 
 function draw() {
-    if (frames.length == 0) return;
-    let frame = frames[frames.length-1];
+    let sec = millis() / 1000;
+    let frm = sec * 30;
+    let idx = int(frm / k_skip_frame);
+    if (idx > frames.length - 1) return;
+    let frame = frames[idx];
 
     background(1);
-    
-    // rotateY(frameCount * 0.01);
+
+    rotateY(frameCount * 0.001);
     camera(100, 100, -400);
     orbitControl();
 
