@@ -34,7 +34,7 @@ function setup() {
         song.loop();
     });
 
-    frameRate(30 / k_skip_frame);
+    frameRate(30);
     load_frame(1);
 }
 
@@ -42,14 +42,13 @@ function draw_dot(x, y, z) {
     const k = 2;
     vertex(x-k, y-k, z);
     vertex(x+k, y+k, z);
-    // vertex(x+k, y-k, z);
-    // vertex(x-k, y+k, z);    
+    vertex(x+k, y-k, z);
+    vertex(x-k, y+k, z);    
 }
 
 function draw() {
     let sec = millis() / 1000;
-    let frm = sec * 30;
-    let idx = int(frm / k_skip_frame);
+    let idx = int(sec * 30 / k_skip_frame);
     if (idx > frames.length - 1) return;
     let frame = frames[idx];
 
