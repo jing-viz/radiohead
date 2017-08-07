@@ -26,8 +26,11 @@ function draw_dot(x, y, z) {
 function draw() {
     background(1);
 
-    rotateY(frameCount * 0.001);
-    camera(200, 200, -400);
+    rotateY(millis() * 0.001);
+    // rotateX(accelerationX * 0.05);
+    // rotateY(accelerationY * 0.05);
+
+    camera(width/2, height/2, 0);
     orbitControl();
     scale(2);
 
