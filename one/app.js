@@ -19,10 +19,8 @@ function setup() {
 
 function draw_dot(x, y, z) {
     const k = 0.5;
-    vertex(x-k, y-k, z-k);
+    vertex(x, y, z);
     vertex(x+k, y+k, z+k);
-    // vertex(x+k, y-k, z);
-    // vertex(x-k, y+k, z);    
 }
 
 function draw() {
