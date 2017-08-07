@@ -15,6 +15,10 @@ function setup() {
             frame.w.push(int(row.get(3)));
         }
     });
+
+    loadSound('../data/HouseOfCards_DataSample.mp3', song => {
+        song.loop();
+    });    
 }
 
 function draw_dot(x, y, z) {
