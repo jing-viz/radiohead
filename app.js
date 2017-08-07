@@ -55,8 +55,9 @@ function draw() {
     background(1);
 
     rotateY(frameCount * 0.001);
-    camera(100, 100, -400);
+    camera(200, 200, -400);
     orbitControl();
+    scale(2);
 
     beginShape(LINES);
     for (let i = 0; i < frame.x.length; i++) {
